@@ -6,11 +6,20 @@ import HelloWord from './components/HelloWord'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const title = [
+    {title: "venerdì"},
+    {title: "cipolla"}
+    ]
   return (
     <>
       <div>
-        <HelloWord />
+        {title.map((el,index) => {
+          return <div key={index}>
+            <HelloWord title={el.title} scrivania="ciao"/>
+            <p>calzini</p>
+            </div>
+        })}
+        <HelloWord title="oggi è venerdi"/>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -23,10 +32,12 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <HelloWord title="sedia"/>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+      <HelloWord title="cipolla"/>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>

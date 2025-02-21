@@ -1,6 +1,9 @@
-const HelloWord = () => {
+const HelloWord = ({title,scrivania="undefined"}) => {
     return (
-        <h1>Hello Word!</h1>
+        <>
+        <h1>{title}</h1>
+        <div>{scrivania}</div>
+        </>
     )
 }
 
