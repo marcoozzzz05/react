@@ -15,11 +15,18 @@ export default function Counter() {
         })
     }
 
+    function Reset() {
+        setCounter((_counter) => {
+            return _counter = 0
+        })
+    }
+
     return (
         <>
         <div>Counter: {counter}</div>
         <button onClick={Increment}>Increment</button>
         <button onClick={Decrement}>Decrement</button>
+        <button onClick={Reset}>Reset</button>
         </>
     )
 }
