@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Counter() {
     const [counter, setCounter] = useState(0)
@@ -21,6 +21,10 @@ export default function Counter() {
         })
     }
 
+    useEffect(() => {
+        document.title = `Count: ${counter}`
+    }, [counter])
+    
     return (
         <>
         <div>Counter: {counter}</div>
