@@ -11,7 +11,6 @@ export default function UncontrolledInput() {
         <>
             <input type="text" ref={ref}/>
             <button onClick={handleButton}>Alert</button>
-            {ref.current}
         </>
     )
 }
