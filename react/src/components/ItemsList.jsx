@@ -1,9 +1,8 @@
 
 
-export default function ItemsList() {
-    const car = ["Audi", "Mercedes", "BMW", "Alfa Romeo"]
-    const listItems = car.map(cars => 
-        <li>{cars}</li>
+export default function ItemsList({items}) {
+    const listItems = items.map(item => 
+        <li>{item}</li>
     )
 
     return (

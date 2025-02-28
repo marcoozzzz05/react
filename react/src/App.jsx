@@ -11,13 +11,14 @@ function App() {
     {title: "venerdì"},
     {title: "cipolla"}
     ]
+  const people = ["Mario","Davide","Andrea","Luca"]
   return (
     <>
     <Counter />
     <TextInput />
     <LoginForm />
     <UncontrolledInput />
-    <ItemsList />
+    <ItemsList items={people}/>
     </>
   )
 }
