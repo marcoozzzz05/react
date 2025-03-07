@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
 
@@ -9,12 +9,16 @@ export default function Todolist() {
 
     const {filteredTodos} = useFilteredTodos(data, searchTerm)
 
+    const handleChange = useCallback((e) => {
+        setSearchTerm(e.target.value)
+    }, [])
+
     if (loading) return <p>Caricamento...</p>;
     if (stateError) return <p>Errore: {stateError}</p>;
 
     return (
         <>
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+            <input type="text" value={searchTerm} onChange={handleChange} />
             <ul>
                 {filteredTodos &&
                     filteredTodos.map(todo => (
