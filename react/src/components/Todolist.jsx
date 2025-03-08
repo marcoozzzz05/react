@@ -1,5 +1,5 @@
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
 
@@ -15,12 +15,19 @@ export default function Todolist() {
         setSearchTerm(e.target.value)
     }, [])
 
+    const inputRef = useRef()
+
+    const handleFocus = () => {
+        inputRef.current.focus()
+    }
+
     if (loading) return <p>Caricamento...</p>;
     if (stateError) return <p>Errore: {stateError}</p>;
 
     return (
         <>
-            <input type="text" value={searchTerm} onChange={handleChange} />
+            <button onClick={handleFocus}>Focus</button>
+            <input type="text" value={searchTerm} onChange={handleChange} ref={inputRef}/>
             <ul>
                 {memoizedFilteredTodos &&
                     memoizedFilteredTodos.map(todo => (
