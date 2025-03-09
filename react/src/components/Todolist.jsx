@@ -1,10 +1,11 @@
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
+import { TodoContext } from "./TodoContext";
 
 export default function Todolist() {
-    const { data, loading, stateError } = useFetch("https://jsonplaceholder.typicode.com/todos")
+    const { data, loading, stateError } = useContext(TodoContext)
     const [searchTerm, setSearchTerm] = useState("")
 
     const {filteredTodos} = useFilteredTodos(data, searchTerm)

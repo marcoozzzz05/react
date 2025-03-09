@@ -7,6 +7,7 @@ import ItemsList from './components/ItemsList'
 import Card from './components/Card'
 import useFetch from './hooks/useFetch'
 import Todolist from './components/Todolist'
+import { TodoProvider } from './provider/TodoProvider'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,7 +36,9 @@ function App() {
           <div key={index}>{user.name}</div>
         ))}
     </div>
-    <Todolist />
+    <TodoProvider>
+        <Todolist />
+    </TodoProvider>
     </>
   )
 }
