@@ -17,17 +17,18 @@ export default function Todolist() {
     }, [])
 
     const inputRef = useRef()
-
-    const handleFocus = () => {
-        inputRef.current.focus()
-    }
+    
+    useEffect(() => {
+        if (!loading) {
+            inputRef.current.focus()
+        }
+    }, [loading])
 
     if (loading) return <p>Caricamento...</p>;
     if (stateError) return <p>Errore: {stateError}</p>;
 
     return (
         <>
-            <button onClick={handleFocus}>Focus</button>
             <input type="text" value={searchTerm} onChange={handleChange} ref={inputRef}/>
             <ul>
                 {memoizedFilteredTodos &&
