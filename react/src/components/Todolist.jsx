@@ -3,12 +3,15 @@ import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "r
 import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
 import { TodoContext } from "./TodoContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Todolist() {
     const { data, loading, stateError } = useContext(TodoContext)
     const [searchTerm, setSearchTerm] = useState("")
 
     const {filteredTodos} = useFilteredTodos(data, searchTerm)
+
+    const navigate = useNavigate()
 
     const memoizedFilteredTodos = useMemo(() => filteredTodos, [filteredTodos]);
 
@@ -33,7 +36,7 @@ export default function Todolist() {
             <ul>
                 {memoizedFilteredTodos &&
                     memoizedFilteredTodos.map(todo => (
-                    <li key={todo.id}>{todo.title}</li>
+                    <li onClick={() => {navigate(`/todo/${todo.id}`)}} key={todo.id}>{todo.title}</li>
                 ))}
             </ul>
         </>
