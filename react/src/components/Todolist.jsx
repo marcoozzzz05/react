@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "r
 import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
 import { TodoContext } from "./TodoContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Todolist() {
     const { data, loading, stateError } = useContext(TodoContext)
@@ -15,9 +15,24 @@ export default function Todolist() {
 
     const memoizedFilteredTodos = useMemo(() => filteredTodos, [filteredTodos]);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get("search");
+
+    useEffect(() => {
+        if (query) {
+            setSearchTerm(query);
+        }
+    }, [query]);
+
     const handleChange = useCallback((e) => {
-        setSearchTerm(e.target.value)
-    }, [])
+        setSearchTerm(e.target.value);
+
+        if (e.target.value) {
+            setSearchParams({ search: e.target.value });
+        } else {
+            setSearchParams({});
+        }
+    }, [setSearchParams]);
 
     const inputRef = useRef()
     
