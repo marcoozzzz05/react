@@ -4,12 +4,16 @@ import useFetch from "../hooks/useFetch"
 import useFilteredTodos from "../hooks/useFilteredTodos";
 import { TodoContext } from "./TodoContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Todolist() {
     const { data, loading, stateError } = useContext(TodoContext)
     const [searchTerm, setSearchTerm] = useState("")
 
-    const {filteredTodos} = useFilteredTodos(data, searchTerm)
+    const todo = useSelector((state) => state.todo.text)
+    console.log(todo)
+
+    const {filteredTodos} = useFilteredTodos(todo, searchTerm)
 
     const navigate = useNavigate()
 
